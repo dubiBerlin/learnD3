@@ -10,6 +10,7 @@ var data = [
 ]
 var chart_width = 800
 var chart_height = 400
+let padding = 50
 
 let radius = 10
 
@@ -28,7 +29,7 @@ let x_scale = d3
 			return d[0]
 		})
 	])
-	.range([0, chart_width])
+	.range([padding, chart_width - padding * 2])
 
 let y_scale = d3
 	.scaleLinear()
@@ -38,21 +39,32 @@ let y_scale = d3
 			return d[1]
 		})
 	])
-	.range([0, chart_width])
-// Bind data and create bars
+	.range([chart_height - padding, padding])
+
+let r_scale = d3
+	.scaleLinear()
+	.domain([
+		0,
+		d3.max(data, function(d) {
+			return d[1]
+		})
+	])
+	.range([5, 30])
+
+// Bind data and create circles
 svg
 	.selectAll("circle")
 	.data(data)
 	.enter()
 	.append("circle")
 	.attr("cx", function(d, i) {
-		return d[0]
+		return x_scale(d[0])
 	})
 	.attr("cy", function(d) {
-		return d[1]
+		return y_scale(d[1])
 	})
 	.attr("r", function(d, i) {
-		return d[1] / radius
+		return r_scale(d[1])
 	})
 	.attr("fill", "#7ed26d")
 
@@ -66,10 +78,10 @@ svg
 		return d.join(" | ")
 	})
 	.attr("x", function(d, i) {
-		return d[0]
+		return x_scale(d[0])
 	})
 	.attr("y", function(d) {
-		return d[1]
+		return y_scale(d[1])
 	})
 	.style("font-size", 11)
 	.attr("fill", "#222")
