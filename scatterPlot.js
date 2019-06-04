@@ -19,6 +19,26 @@ let svg = d3
 	.attr("width", chart_width)
 	.attr("height", chart_height)
 
+// create scales
+let x_scale = d3
+	.scaleLinear()
+	.domain([
+		0,
+		d3.max(data, function(d) {
+			return d[0]
+		})
+	])
+	.range([0, chart_width])
+
+let y_scale = d3
+	.scaleLinear()
+	.domain([
+		0,
+		d3.max(data, function(d) {
+			return d[1]
+		})
+	])
+	.range([0, chart_width])
 // Bind data and create bars
 svg
 	.selectAll("circle")
