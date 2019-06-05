@@ -55,7 +55,7 @@ let a_scale = d3
 // Create x-Axis
 //<-- Kurzfrom von ->axisBottom().scale(x_scale) // scale sagt d3 wie groß die x-Achse sein soll
 let x_axis = d3.axisBottom(x_scale)
-
+// .tickValues([10, 100, 230, 300, 550])
 // group in das svg einfügen und in die group die x-Achse einfügen
 svg
 	.append("g")
