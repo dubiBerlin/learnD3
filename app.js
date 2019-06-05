@@ -44,7 +44,6 @@ svg
 		return parseFloat(d).toFixed(2)
 	})
 	.attr("x", function(d, i) {
-		// return i * (chart_width / data.length) + 1
 		return i * (chart_width / data.length) + (chart_width / data.length - bar_padding) / 2
 	})
 	.attr("y", function(d) {
