@@ -42,16 +42,6 @@ let y_scale = d3
 	])
 	.range([chart_height - padding, padding])
 
-// let r_scale = d3
-// 	.scaleLinear()
-// 	.domain([
-// 		0,
-// 		d3.max(data, function(d) {
-// 			return d[1]
-// 		})
-// 	])
-// 	.range([5, 30])
-
 let a_scale = d3
 	.scaleSqrt()
 	.domain([
