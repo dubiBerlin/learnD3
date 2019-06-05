@@ -64,7 +64,13 @@ svg
 	.attr("transform", "translate(0," + (chart_height - padding) + ")")
 
 // Create y-axis
-let y_axis = d3.axisLeft(y_scale).ticks(5)
+let y_axis = d3
+	.axisLeft(y_scale)
+	.ticks(5)
+	.tickFormat(function(d) {
+		return `${d}€`
+  })
+
 svg
 	.append("g")
 	.call(y_axis)
