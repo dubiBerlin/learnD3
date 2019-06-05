@@ -8,6 +8,7 @@ var data = [
 	[699, 225],
 	[90, 220]
 ]
+
 var chart_width = 800
 var chart_height = 400
 let padding = 50
@@ -41,15 +42,25 @@ let y_scale = d3
 	])
 	.range([chart_height - padding, padding])
 
-let r_scale = d3
-	.scaleLinear()
+// let r_scale = d3
+// 	.scaleLinear()
+// 	.domain([
+// 		0,
+// 		d3.max(data, function(d) {
+// 			return d[1]
+// 		})
+// 	])
+// 	.range([5, 30])
+
+let a_scale = d3
+	.scaleSqrt()
 	.domain([
 		0,
 		d3.max(data, function(d) {
 			return d[1]
 		})
 	])
-	.range([5, 30])
+	.range([0, 25])
 
 // Bind data and create circles
 svg
@@ -64,7 +75,7 @@ svg
 		return y_scale(d[1])
 	})
 	.attr("r", function(d, i) {
-		return r_scale(d[1])
+		return a_scale(d[1])
 	})
 	.attr("fill", "#7ed26d")
 
