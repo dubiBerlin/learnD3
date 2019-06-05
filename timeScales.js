@@ -12,13 +12,13 @@ var data = [
 ]
 
 let time_parse = d3.timeParse("%m/%d/%Y")
-
+let time_format = d3.timeFormat("%b %e")
 let newData = []
 // Loop through each date
 data.forEach(obj => {
 	obj.date = time_parse(obj.date)
 })
-console.log(data)
+
 var chart_width = 800
 var chart_height = 400
 let padding = 50
@@ -88,7 +88,7 @@ svg
 	.enter()
 	.append("text")
 	.text(function(d) {
-		return d.date
+		return time_format(d.date)
 	})
 	.attr("x", function(d, i) {
 		return x_scale(d.date)
