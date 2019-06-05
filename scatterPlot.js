@@ -52,6 +52,13 @@ let a_scale = d3
 	])
 	.range([0, 25])
 
+// Create x-Axis
+//<-- Kurzfrom von ->axisBottom().scale(x_scale) // scale sagt d3 wie groß die x-Achse sein soll
+let x_axis = d3.axisBottom(x_scale)
+
+// group in das svg einfügen und in die group die x-Achse einfügen
+svg.append("g").call(x_axis)
+
 // Bind data and create circles
 svg
 	.selectAll("circle")
@@ -71,6 +78,7 @@ svg
 
 // create labels
 svg
+	.append("g")
 	.selectAll("text")
 	.data(data)
 	.enter()
