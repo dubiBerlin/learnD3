@@ -57,7 +57,11 @@ let a_scale = d3
 let x_axis = d3.axisBottom(x_scale)
 
 // group in das svg einfügen und in die group die x-Achse einfügen
-svg.append("g").call(x_axis)
+svg
+	.append("g")
+	.call(x_axis)
+	.attr("class", "x-axis")
+	.attr("transform", "translate(0," + (chart_height - padding) + ")")
 
 // Bind data and create circles
 svg
