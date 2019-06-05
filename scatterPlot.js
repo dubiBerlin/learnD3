@@ -63,6 +63,14 @@ svg
 	.attr("class", "x-axis")
 	.attr("transform", "translate(0," + (chart_height - padding) + ")")
 
+// Create y-axis
+let y_axis = d3.axisLeft(y_scale)
+svg
+	.append("g")
+	.call(y_axis)
+	.attr("class", "y-axis")
+	.attr("transform", "translate(" + padding + ",0)")
+
 // Bind data and create circles
 svg
 	.selectAll("circle")
